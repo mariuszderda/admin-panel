@@ -11,7 +11,7 @@ export const Navigation = () => {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Package2 className="h-6 w-6" />
+          <Package2 className="h-6 w-6 text-primary" />
           <span className="sr-only">MeShop</span>
         </Link>
         <Link
@@ -39,7 +39,7 @@ export const Navigation = () => {
           Category
         </Link>
         <Link
-          href="/cart/"
+          href="/carts/"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Carts
@@ -83,7 +83,7 @@ export const Navigation = () => {
               Categories
             </Link>
             <Link
-              href="/cart/"
+              href="/carts/"
               className="text-muted-foreground hover:text-foreground"
             >
               Cart

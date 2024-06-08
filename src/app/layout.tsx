@@ -1,17 +1,4 @@
 import { Header } from "@/components/header/header";
-import { Navigation } from "@/components/header/navigation";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { CircleUser, Menu, Package2, Search } from "lucide-react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -33,7 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <div className="flex min-h-screen w-full flex-col">
+          <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

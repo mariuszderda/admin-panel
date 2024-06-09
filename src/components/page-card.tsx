@@ -18,7 +18,7 @@ export const PageCard: FC<PageCardProps> = ({ children, title, subtitle }) => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="grid gap-2 text-sm">
-          <CardTitle className="text-primary">{title}</CardTitle>
+          <CardTitle>{title}</CardTitle>
           <CardDescription>{subtitle}</CardDescription>
         </div>
       </CardHeader>

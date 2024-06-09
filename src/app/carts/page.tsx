@@ -8,8 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
-import { CartType, ProductType } from "../../../types";
+import { CartType, ProductType } from "../../types";
 
 const CartPage = async () => {
   const carts = await fetch("http://localhost:3000/cart").then((res) =>
@@ -40,7 +41,7 @@ const CartPage = async () => {
               <TableRow className="cursor-pointer">
                 <TableCell className="font-medium">{index + 1}</TableCell>
                 <TableCell>{cart._id.slice(-6)}</TableCell>
-                <TableCell>{cart.totalCost} zł</TableCell>
+                <TableCell>{priceWithSeparator(cart.totalCost)}</TableCell>
                 <TableCell>
                   {new Date(cart.createdAt).toLocaleString()}
                 </TableCell>

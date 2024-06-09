@@ -44,6 +44,24 @@ export const Navigation = () => {
         >
           Carts
         </Link>
+        <Link
+          href="customers"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Customers
+        </Link>
+        <Link
+          href="payments"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Payments
+        </Link>
+        <Link
+          href="delivery"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Delivery
+        </Link>
       </nav>
       <Sheet>
         <SheetTrigger asChild>

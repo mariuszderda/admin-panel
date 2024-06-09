@@ -8,8 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
-import { ItemInCart } from "../../../../types";
+import { ItemInCart } from "@/types";
 
 const CartPage = async ({ params }: { params: { id: string } }) => {
   const { items, totalCost } = await fetch(
@@ -23,7 +24,9 @@ const CartPage = async ({ params }: { params: { id: string } }) => {
     <PageCard title={`ID: ${params.id}`} subtitle="Created at:">
       <Table>
         <TableCaption className="text-right">
-          Total cost: {totalCost.toLocaleString()} zł
+          <p className="border-b-2 inline border-slate-800/25">
+            Total: {priceWithSeparator(totalCost)}
+          </p>
         </TableCaption>
         <TableHeader>
           <TableRow>
@@ -50,10 +53,12 @@ const CartPage = async ({ params }: { params: { id: string } }) => {
                 <TableCell>Photo</TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.reference}</TableCell>
-                <TableCell className="text-right">{item.price} zł</TableCell>
+                <TableCell className="text-right">
+                  {priceWithSeparator(item.price)}
+                </TableCell>
                 <TableCell className="text-right">{item.quantity}</TableCell>
                 <TableCell className="text-right">
-                  {(item.price * item.quantity).toLocaleString()} zł
+                  {priceWithSeparator(item.price * item.quantity)}
                 </TableCell>
               </TableRow>
             </Link>

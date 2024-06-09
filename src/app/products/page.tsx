@@ -8,8 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
-import { ProductType } from "../../../types";
+import { ProductType } from "../../types";
 
 const ProductPage = async () => {
   const response = await fetch("http://localhost:3000/products");
@@ -43,7 +44,9 @@ const ProductPage = async () => {
                 <TableCell>Photo</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.reference}</TableCell>
-                <TableCell className="text-right">{product.price}</TableCell>
+                <TableCell className="text-right">
+                  {priceWithSeparator(product.price)}
+                </TableCell>
                 <TableCell className="text-right">{product.stock}</TableCell>
               </TableRow>
             </Link>

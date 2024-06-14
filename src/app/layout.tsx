@@ -1,5 +1,6 @@
 import { Header } from "@/components/header/header";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";

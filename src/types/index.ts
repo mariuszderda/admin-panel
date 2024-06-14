@@ -49,3 +49,8 @@ export type CreateProductType = {
   stock: number;
   category: string;
 };
+
+export type UserType = {
+  userId: string;
+  token: string;
+};

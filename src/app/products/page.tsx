@@ -10,14 +10,21 @@ import {
 } from "@/components/ui/table";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
-import { ProductType } from "../../types";
+import { ProductType } from "@/types";
 
 const ProductPage = async () => {
-  const response = await fetch("http://localhost:3000/products");
-  const products = await response.json();
+  const products = await fetch(`${process.env.API_HOST}/products`).then((res) =>
+    res.json()
+  );
+  if (!products || products.length === 0)
+    throw new Error("List of product not found");
 
   return (
-    <PageCard title="Products" subtitle="All products in your store">
+    <PageCard
+      title="Products"
+      subtitle="All products in your store"
+      createHref="/products/create"
+    >
       <Table>
         <TableCaption>A list of all products</TableCaption>
         <TableHeader>
@@ -28,6 +35,7 @@ const ProductPage = async () => {
             <TableHead>Reference</TableHead>
             <TableHead className="text-right">Price</TableHead>
             <TableHead className="text-right">Stock</TableHead>
+            <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -35,7 +43,7 @@ const ProductPage = async () => {
             <Link
               legacyBehavior
               href={{
-                pathname: `/product/${product._id}`,
+                pathname: `/products/${product._id}`,
               }}
               key={product.reference}
             >
@@ -48,6 +56,7 @@ const ProductPage = async () => {
                   {priceWithSeparator(product.price)}
                 </TableCell>
                 <TableCell className="text-right">{product.stock}</TableCell>
+                <TableCell className="text-right">edit / delete</TableCell>
               </TableRow>
             </Link>
           ))}

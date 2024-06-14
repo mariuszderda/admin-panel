@@ -13,9 +13,12 @@ import Link from "next/link";
 import { CartType, ProductType } from "../../types";
 
 const CartPage = async () => {
-  const carts = await fetch("http://localhost:3000/cart").then((res) =>
+  const carts = await fetch("http://localhost:3000/carts").then((res) =>
     res.json()
   );
+
+  if (carts.error || carts.length === 0)
+    throw new Error("Please try again later.");
 
   return (
     <PageCard title="Cart" subtitle="All carts in the MyShop 😎">

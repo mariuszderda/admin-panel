@@ -40,3 +40,12 @@ export type CategoryType = {
   updatedAt: string;
   createdBy: CreatedByType;
 };
+
+export type CreateProductType = {
+  name: string;
+  reference: string;
+  price: number;
+  description: string;
+  stock: number;
+  category: string;
+};

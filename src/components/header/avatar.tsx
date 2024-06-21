@@ -1,3 +1,4 @@
+import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,10 +22,9 @@ export const Avatar = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem>
+          <LogoutButton />
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

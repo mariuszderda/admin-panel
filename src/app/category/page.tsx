@@ -8,10 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CategoryType, ProductType } from "@/types";
-import { priceWithSeparator } from "@/utils/priceWithSeparator";
+import { CategoryType } from "@/types";
 import Link from "next/link";
-import { getEnabledCategories } from "node:trace_events";
 
 const CategoryPage = async () => {
   const categories = await fetch(`${process.env.API_HOST}/category`).then(

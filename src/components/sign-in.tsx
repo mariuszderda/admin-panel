@@ -1,11 +1,43 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { login } from "@/lib/auth";
+import { signInSchema } from "@/types/schema/sign-in-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import { signIn } from "@/auth";
+import { useRouter } from "next/navigation";
+import { FormProvider, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import * as z from "zod";
 
 export const SignIn = () => {
+  const router = useRouter();
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const handleLogin = async (data: { email: string; password: string }) => {
+    await login(data).then((res) => {
+      if (res?.success) {
+        toast.success("Login successfully");
+        router.push("/");
+      }
+
+      if (res?.error) toast.error(res.error);
+    });
+  };
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
@@ -13,36 +45,79 @@ export const SignIn = () => {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
-              Enter your email below to login to your account
+              Enter your email and password below to login to your account
             </p>
           </div>
           <div className="grid gap-4">
-            <form
-              action={async (formData) => {
-                "use server";
-
-                await signIn("credentials", formData, redirect("/"));
-              }}
-            >
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
+            <FormProvider {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleLogin)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="john.doe@gmail.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div className="grid gap-2 mt-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                </div>
-                <Input id="password" type="password" required />
-              </div>
-              <Button type="submit" className="w-full">
-                Login
-              </Button>
-            </form>
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="********"
+                          {...field}
+                          type="password"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Login</Button>
+              </form>
+            </FormProvider>
+
+            {/* <form */}
+            {/*  action={async (formData) => { */}
+            {/*    "use server"; */}
+
+            {/*    const loginData = await login(formData).then((res) => res); */}
+
+            {/*    if (loginData?.success) redirect("/"); */}
+            {/*    if (loginData?.error) toast.error("Invalid credential"); */}
+            {/*  }} */}
+            {/* > */}
+            {/*  <div className="grid gap-2"> */}
+            {/*    <Label htmlFor="email">Email</Label> */}
+            {/*    <Input */}
+            {/*      name="email" */}
+            {/*      id="email" */}
+            {/*      type="email" */}
+            {/*      placeholder="m@example.com" */}
+            {/*      required */}
+            {/*    /> */}
+            {/*  </div> */}
+            {/*  <div className="grid gap-2 mt-2"> */}
+            {/*    <div className="flex items-center"> */}
+            {/*      <Label htmlFor="password">Password</Label> */}
+            {/*    </div> */}
+            {/*    <Input id="password" type="password" name="password" required /> */}
+            {/*  </div> */}
+            {/*  <Button type="submit" className="w-full"> */}
+            {/*    Login */}
+            {/*  </Button> */}
+            {/* </form> */}
           </div>
         </div>
       </div>

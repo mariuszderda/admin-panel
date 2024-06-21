@@ -1,10 +1,7 @@
-// noinspection t
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import {
-  Form,
   FormControl,
   FormDescription,
   FormField,
@@ -24,31 +21,72 @@ import { Textarea } from "@/components/ui/textarea";
 import { CategoryType, CreateProductType } from "@/types";
 import { ProductSchema } from "@/types/schema/product-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { FormProvider, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
-export const CreateProduct = ({
-  categories,
-}: {
+type CreateProductProps = {
   categories: CategoryType[];
-  // eslint-disable-next-line consistent-return
-}) => {
+  product?: {
+    _id: string;
+    name: string;
+    reference: string;
+    price: number;
+    stock: number;
+    description: string;
+    category: string;
+  } | null;
+  token: string | number | undefined;
+};
+
+export const ProductForm = ({
+  categories,
+  token,
+  product,
+}: CreateProductProps) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof ProductSchema>>({
     resolver: zodResolver(ProductSchema),
     defaultValues: {
-      name: "",
-      reference: "",
-      price: 0,
-      stock: 0,
-      description: "",
-      category: "",
+      name: product ? product.name : "",
+      reference: product ? product.reference : "",
+      price: product ? product.price : 0,
+      stock: product ? product.stock : 0,
+      description: product ? product.description : "",
+      category: product ? product.category : "",
     },
   });
-  const onSubmit = (data: CreateProductType) => {};
 
+  const onSubmit = async (data: CreateProductType) => {
+    const url = product
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/products/${product._id}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/products/`;
+
+    const httpMethod = product ? "PUT" : "POST";
+
+    try {
+      const response = await fetch(url, {
+        method: httpMethod,
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_API_HOST}`,
+        },
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      toast.success("Update successful");
+      window.location.reload();
+      router.back();
+    } catch (error) {
+      throw new Error("Failed to update product");
+    }
+  };
   return (
-    <Form {...form}>
+    <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -127,7 +165,10 @@ export const CreateProduct = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={product?.category}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a category" />
@@ -135,7 +176,7 @@ export const CreateProduct = ({
                 </FormControl>
                 <SelectContent>
                   {categories.map((category) => (
-                    <SelectItem value={category._id} key={category._id}>
+                    <SelectItem value={category.name} key={category._id}>
                       {category.name}
                     </SelectItem>
                   ))}
@@ -148,6 +189,6 @@ export const CreateProduct = ({
         />
         <Button type="submit">Submit</Button>
       </form>
-    </Form>
+    </FormProvider>
   );
 };

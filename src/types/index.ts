@@ -54,3 +54,16 @@ export type UserType = {
   userId: string;
   token: string;
 };
+
+export type CustomerType = {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  telephone: string;
+  delivery: {
+    street_and_number: string;
+    city: string;
+    zip_code: string;
+  };
+};

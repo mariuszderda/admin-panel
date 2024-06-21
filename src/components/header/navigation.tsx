@@ -39,12 +39,6 @@ export const Navigation = () => {
           Category
         </Link>
         <Link
-          href="/carts/"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Carts
-        </Link>
-        <Link
           href="customers"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
@@ -98,13 +92,25 @@ export const Navigation = () => {
               href="/category/"
               className="text-muted-foreground hover:text-foreground"
             >
-              Categories
+              Category
             </Link>
             <Link
-              href="/carts/"
-              className="text-muted-foreground hover:text-foreground"
+              href="customers"
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
-              Cart
+              Customers
+            </Link>
+            <Link
+              href="payments"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Payments
+            </Link>
+            <Link
+              href="delivery"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Delivery
             </Link>
           </nav>
         </SheetContent>

@@ -1,9 +1,8 @@
 import { Header } from "@/components/header/header";
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +25,7 @@ export default function RootLayout({
             {children}
           </main>
         </div>
+        <Toaster position="top-center" />
       </body>
     </html>
   );

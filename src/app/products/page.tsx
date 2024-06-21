@@ -1,3 +1,4 @@
+import { ActionButtons } from "@/components/action-buttons";
 import { PageCard } from "@/components/page-card";
 import {
   Table,
@@ -8,14 +9,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getSession } from "@/lib/auth";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
 import { ProductType } from "@/types";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 const ProductPage = async () => {
-  const products = await fetch(`${process.env.API_HOST}/products`).then((res) =>
-    res.json()
-  );
+  const session = await getSession();
+  const products = await fetch(`${process.env.API_HOST}/products`, {
+    cache: "reload",
+  }).then((res) => res.json());
+
   if (!products || products.length === 0)
     throw new Error("List of product not found");
 
@@ -30,7 +36,6 @@ const ProductPage = async () => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Lp.</TableHead>
-            <TableHead>Photo</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Reference</TableHead>
             <TableHead className="text-right">Price</TableHead>
@@ -49,14 +54,19 @@ const ProductPage = async () => {
             >
               <TableRow className="cursor-pointer">
                 <TableCell className="font-medium">{index + 1}</TableCell>
-                <TableCell>Photo</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.reference}</TableCell>
                 <TableCell className="text-right">
                   {priceWithSeparator(product.price)}
                 </TableCell>
                 <TableCell className="text-right">{product.stock}</TableCell>
-                <TableCell className="text-right">edit / delete</TableCell>
+                <TableCell className="text-right flex justify-end items-center w-auto">
+                  <ActionButtons
+                    productId={product._id}
+                    token={session?.user?.token}
+                    categoryName="products"
+                  />
+                </TableCell>
               </TableRow>
             </Link>
           ))}

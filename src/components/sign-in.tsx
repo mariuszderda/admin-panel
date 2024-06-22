@@ -87,44 +87,13 @@ export const SignIn = () => {
                 <Button type="submit">Login</Button>
               </form>
             </FormProvider>
-
-            {/* <form */}
-            {/*  action={async (formData) => { */}
-            {/*    "use server"; */}
-
-            {/*    const loginData = await login(formData).then((res) => res); */}
-
-            {/*    if (loginData?.success) redirect("/"); */}
-            {/*    if (loginData?.error) toast.error("Invalid credential"); */}
-            {/*  }} */}
-            {/* > */}
-            {/*  <div className="grid gap-2"> */}
-            {/*    <Label htmlFor="email">Email</Label> */}
-            {/*    <Input */}
-            {/*      name="email" */}
-            {/*      id="email" */}
-            {/*      type="email" */}
-            {/*      placeholder="m@example.com" */}
-            {/*      required */}
-            {/*    /> */}
-            {/*  </div> */}
-            {/*  <div className="grid gap-2 mt-2"> */}
-            {/*    <div className="flex items-center"> */}
-            {/*      <Label htmlFor="password">Password</Label> */}
-            {/*    </div> */}
-            {/*    <Input id="password" type="password" name="password" required /> */}
-            {/*  </div> */}
-            {/*  <Button type="submit" className="w-full"> */}
-            {/*    Login */}
-            {/*  </Button> */}
-            {/* </form> */}
           </div>
         </div>
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
           property="empty"
-          src="/placeholder.svg"
+          src="/hero-image.jpg"
           alt="Image"
           width={1920}
           height={1080}

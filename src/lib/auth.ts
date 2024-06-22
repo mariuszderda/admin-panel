@@ -2,7 +2,6 @@
 
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 const secretKey = process.env.AUTH_SECRET;

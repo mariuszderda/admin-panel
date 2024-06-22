@@ -67,3 +67,16 @@ export type CustomerType = {
     zip_code: string;
   };
 };
+
+export type PaymentType = {
+  _id: string;
+  payment_type: string;
+  display_name: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PaymentsListType = {
+  payments: PaymentType[];
+};

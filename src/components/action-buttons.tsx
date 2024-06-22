@@ -4,24 +4,24 @@ import { Edit } from "lucide-react";
 import Link from "next/link";
 
 type ActionButtonsProps = {
-  productId: string;
+  elementId: string;
   token?: string | number;
   categoryName: string;
 };
 
 export const ActionButtons = ({
-  productId,
+  elementId,
   token,
   categoryName,
 }: ActionButtonsProps) => {
   return (
     <>
-      <Link href={`/products/edit/${productId}`}>
+      <Link href={`/${categoryName}/edit/${elementId}`}>
         <Button variant="ghost" className="text-primary">
           <Edit />
         </Button>
       </Link>
-      <DeleteButton id={productId} token={token} categoryName={categoryName} />
+      <DeleteButton id={elementId} token={token} categoryName={categoryName} />
     </>
   );
 };

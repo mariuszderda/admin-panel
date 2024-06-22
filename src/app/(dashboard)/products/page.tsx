@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getData } from "@/lib/api-call";
 import { getSession } from "@/lib/auth";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import Link from "next/link";
@@ -17,10 +18,11 @@ import { ProductType } from "@/types";
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 const ProductPage = async () => {
+  const products = await getData("products");
   const session = await getSession();
-  const products = await fetch(`${process.env.API_HOST}/products`, {
-    cache: "reload",
-  }).then((res) => res.json());
+  // const products = await fetch(`${process.env.API_HOST}/products`, {
+  //   cache: "no-store",
+  // }).then((res) => res.json());
 
   if (!products || products.length === 0)
     throw new Error("List of product not found");
@@ -62,7 +64,7 @@ const ProductPage = async () => {
                 <TableCell className="text-right">{product.stock}</TableCell>
                 <TableCell className="text-right flex justify-end items-center w-auto">
                   <ActionButtons
-                    productId={product._id}
+                    elementId={product._id}
                     token={session?.user?.token}
                     categoryName="products"
                   />

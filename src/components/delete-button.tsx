@@ -20,7 +20,7 @@ export const DeleteButton = ({
     e.preventDefault();
 
     // eslint-disable-next-line no-alert
-    if (window.confirm("Are you sure you want to delete this product?"))
+    if (window.confirm(`Are you sure you want to delete this ${categoryName}?`))
       await fetch(`http://localhost:3000/${categoryName}/${id}`, {
         // mode: "no-cors",
         method: "DELETE",

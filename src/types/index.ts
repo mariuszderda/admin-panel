@@ -80,3 +80,17 @@ export type PaymentType = {
 export type PaymentsListType = {
   payments: PaymentType[];
 };
+
+export type DeliveryType = {
+  _id: string;
+  delivery_type: string;
+  display_name: string;
+  delivery_cost: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeliveriesListType = {
+  deliveries: DeliveryType[];
+};

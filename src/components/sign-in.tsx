@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
+import heroImage from "@/../public/hero-image.jpg";
 
 export const SignIn = () => {
   const router = useRouter();
@@ -92,8 +93,8 @@ export const SignIn = () => {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          property="empty"
-          src="/hero-image.jpg"
+          property="blur"
+          src={heroImage}
           alt="Image"
           width={1920}
           height={1080}

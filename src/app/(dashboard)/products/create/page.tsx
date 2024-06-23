@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 const CreateProductPage = async () => {
   const session = await getSession();
-  const categories = await getData("category");
+  const categories = await getData("categories");
 
   return (
     <PageCard title="Create product">

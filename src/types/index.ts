@@ -18,20 +18,12 @@ export type ProductType = {
   stock: number;
 };
 
-export type ItemInCart = {
+export type ProductItemInOrder = {
   name: string;
   reference: string;
   price: number;
   quantity: number;
   _id: string;
-};
-
-export type CartType = {
-  _id: string;
-  items: ItemInCart[];
-  totalCost: number;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type CategoryType = {
@@ -79,10 +71,6 @@ export type PaymentType = {
   updatedAt: string;
 };
 
-export type PaymentsListType = {
-  payments: PaymentType[];
-};
-
 export type DeliveryType = {
   _id: string;
   delivery_type: string;
@@ -95,4 +83,38 @@ export type DeliveryType = {
 
 export type DeliveriesListType = {
   deliveries: DeliveryType[];
+};
+
+export type OrderType = {
+  _id: string;
+  customer: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    telephone: string;
+  };
+  delivery_address: {
+    street_and_number: string;
+    city: string;
+    zip_code: string;
+  };
+  items: [
+    {
+      _id: string;
+      name: string;
+      reference: string;
+      price: 3999;
+      quantity: 5;
+    },
+    {
+      _id: string;
+      name: string;
+      reference: string;
+      price: 3999;
+      quantity: 4;
+    },
+  ];
+  payment_method: string;
+  status: string;
+  amount: number;
 };

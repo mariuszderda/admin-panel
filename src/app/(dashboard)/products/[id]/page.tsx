@@ -1,5 +1,4 @@
 import { PageCard } from "@/components/page-card";
-import { getDataById } from "@/lib/api-call";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {

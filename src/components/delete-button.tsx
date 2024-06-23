@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export const DeleteButton = ({
@@ -18,6 +19,7 @@ export const DeleteButton = ({
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
+    // const router = useRouter();
 
     // eslint-disable-next-line no-alert
     if (window.confirm(`Are you sure you want to delete this ${categoryName}?`))
@@ -32,11 +34,11 @@ export const DeleteButton = ({
       })
         .then((response) => {
           if (!response.ok) throw response;
-          window.location.reload();
           return response.json();
         })
         .then((data) => {
-          toast("Successfully deleted");
+          toast.success("Successfully deleted");
+          window.location.reload();
           return data;
         })
         .catch((error) => {

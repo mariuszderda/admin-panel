@@ -72,8 +72,8 @@ export const CustomerForm = ({ token, customer }: CustomerFormProps) => {
     };
   }) => {
     const url = customer
-      ? `${process.env.NEXT_PUBLIC_API_HOST}/customers/${customer._id}`
-      : `${process.env.NEXT_PUBLIC_API_HOST}/customers`;
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/${customer._id}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/categories`;
 
     const httpMethod = customer ? "PATCH" : "POST";
     try {
@@ -90,7 +90,7 @@ export const CustomerForm = ({ token, customer }: CustomerFormProps) => {
       if (!response.ok) throw new Error("Network response was not ok");
 
       toast.success("Delivery was created successfully.");
-      router.push("/customers");
+      router.push("/category");
     } catch (e) {
       throw new Error("Can't create a delivery method");
     }

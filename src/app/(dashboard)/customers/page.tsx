@@ -28,7 +28,16 @@ const CustomersPage = async () => {
     }
   ).then((res) => res.json());
   if (!customers || customers.length === 0)
-    throw new Error("List of product not found");
+    return (
+      <PageCard
+        title="Customer"
+        subtitle="Manage your customers"
+        createHref="customers/create"
+      >
+        <h1>List of customers is empty!</h1>
+      </PageCard>
+    );
+
   return (
     <PageCard
       title="Customer"

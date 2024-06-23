@@ -25,7 +25,15 @@ const ProductPage = async () => {
   // }).then((res) => res.json());
 
   if (!products || products.length === 0)
-    throw new Error("List of product not found");
+    return (
+      <PageCard
+        title="Products"
+        subtitle="All products in your store"
+        createHref="/products/create"
+      >
+        <h2>List of products is empty</h2>
+      </PageCard>
+    );
 
   return (
     <PageCard

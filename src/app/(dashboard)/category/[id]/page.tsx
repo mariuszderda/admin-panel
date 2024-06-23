@@ -1,48 +1,58 @@
 import { PageCard } from "@/components/page-card";
 import { getDataById } from "@/lib/api-call";
 import { cn } from "@/lib/utils";
+import { CategoryType } from "@/types";
 
-const PaymentPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const payment = await getDataById("payments", id);
+const CategoryPage = async ({ params: { id } }: { params: { id: string } }) => {
+  const category: CategoryType = await getDataById("category", id);
   return (
-    <PageCard title="Payment detali">
+    <PageCard title="Category detali">
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Id</dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {payment._id}
+              {category._id}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Payment type
+              Category name
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {payment.payment_type}
+              {category.name}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Display name
+              Description
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {payment.display_name}
+              {category.description}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Status
+              Created at
             </dt>
-            <dd
-              className={cn(
-                "mt-1 text-sm leading-6 Esm:col-span-2 sm:mt-0 text-slate-600 font-bold",
-                {
-                  "text-lime-600 font-bold": payment.status === "active",
-                }
-              )}
-            >
-              {payment.status}
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {new Date(category.createdAt).toLocaleString("pl-PL")}
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">
+              Updated at
+            </dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {new Date(category.updatedAt).toLocaleString("pl-PL")}
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">
+              Created by
+            </dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {category.createdBy.username}, {category.createdBy.email}
             </dd>
           </div>
         </dl>
@@ -51,4 +61,4 @@ const PaymentPage = async ({ params: { id } }: { params: { id: string } }) => {
   );
 };
 
-export default PaymentPage;
+export default CategoryPage;

@@ -18,11 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex min-h-full w-fit flex-col">
-          <main className="flex flex-1 flex-col justify-center items-center gap-4 p-4 md:gap-8 md:p-8">
-            {children}
-          </main>
-        </div>
+        {children}
         <Toaster position="top-center" />
       </body>
     </html>

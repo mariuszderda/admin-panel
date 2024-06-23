@@ -21,37 +21,37 @@ export const Navigation = () => {
           Dashboard
         </Link>
         <Link
-          href="/products/"
+          href="/products"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Products
         </Link>
         <Link
-          href="/orders/"
+          href="/orders"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Orders
         </Link>
         <Link
-          href="/category/"
+          href="/category"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Category
         </Link>
         <Link
-          href="customers"
+          href="/customers"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Customers
         </Link>
         <Link
-          href="payments"
+          href="/payments"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Payments
         </Link>
         <Link
-          href="delivery"
+          href="/delivery"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Delivery
@@ -77,37 +77,37 @@ export const Navigation = () => {
               Dashboard
             </Link>
             <Link
-              href="/orders/"
+              href="/orders"
               className="text-muted-foreground hover:text-foreground"
             >
               Orders
             </Link>
             <Link
-              href="/products/"
+              href="/products"
               className="text-muted-foreground hover:text-foreground"
             >
               Products
             </Link>
             <Link
-              href="/category/"
+              href="/category"
               className="text-muted-foreground hover:text-foreground"
             >
               Category
             </Link>
             <Link
-              href="customers"
+              href="/customers"
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               Customers
             </Link>
             <Link
-              href="payments"
+              href="/payments"
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               Payments
             </Link>
             <Link
-              href="delivery"
+              href="/delivery"
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               Delivery

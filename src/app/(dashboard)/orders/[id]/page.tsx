@@ -1,6 +1,5 @@
-import { DataNotFound } from "@/components/data-not-found";
 import { PageCard } from "@/components/page-card";
-import { getDataById, getDataByIdWithToken } from "@/lib/api-call";
+import { getDataByIdWithToken } from "@/lib/api-call";
 import { getSession } from "@/lib/auth";
 import { OrderType } from "@/types";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
@@ -19,10 +18,11 @@ const OrderDetailPage = async ({
 
   if (!order || order._id === undefined)
     return (
-      <PageCard title="Customer detail">
+      <PageCard title="Order detail">
         <h3>We can&apos;t load order detail.</h3>
       </PageCard>
     );
+
   return (
     <PageCard title="Order details">
       <div>
@@ -127,7 +127,7 @@ const OrderDetailPage = async ({
                       </dd>
                     </div>
                     {order.items.map((item) => (
-                      <div className="flex flex justify-between" key={item._id}>
+                      <div className="flex justify-between" key={item._id}>
                         <dt className="text-sm font-medium leading-6 text-gray-900">
                           {item.reference}
                         </dt>

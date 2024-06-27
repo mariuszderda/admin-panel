@@ -4,6 +4,14 @@ import { cn } from "@/lib/utils";
 
 const PaymentPage = async ({ params: { id } }: { params: { id: string } }) => {
   const payment = await getDataById("payments", id);
+
+  if (!payment || payment._id === undefined)
+    return (
+      <PageCard title="Payment detail">
+        <h3>We can&apos;t load payment detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Payment detali">
       <div className="mt-6 border-t border-gray-100">

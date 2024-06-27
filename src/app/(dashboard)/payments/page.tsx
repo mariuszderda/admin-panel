@@ -21,6 +21,17 @@ const PaymentsPage = async () => {
   const payments = await getData("payments");
   const session = await getSession();
 
+  if (!payments || payments.length === 0)
+    return (
+      <PageCard
+        title="Payments"
+        subtitle="All payments in your store"
+        createHref="/products/create"
+      >
+        <h2>List of payments method is empty</h2>
+      </PageCard>
+    );
+
   return (
     <PageCard
       title="Payments"

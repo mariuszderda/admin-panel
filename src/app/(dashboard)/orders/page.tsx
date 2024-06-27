@@ -19,6 +19,18 @@ const OrderPage = async () => {
   const session = await getSession();
   const token = session.user?.token;
   const orders = await getDataWithToken("orders", token);
+
+  if (!orders || orders.length === 0)
+    return (
+      <PageCard
+        title="Payments"
+        subtitle="All payments in your store"
+        createHref="/products/create"
+      >
+        <h2>List of payments method is empty</h2>
+      </PageCard>
+    );
+
   return (
     <div>
       <PageCard

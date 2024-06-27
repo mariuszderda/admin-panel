@@ -20,9 +20,6 @@ export const dynamic = "force-dynamic";
 const ProductPage = async () => {
   const products = await getData("products");
   const session = await getSession();
-  // const products = await fetch(`${process.env.API_HOST}/products`, {
-  //   cache: "no-store",
-  // }).then((res) => res.json());
 
   if (!products || products.length === 0)
     return (

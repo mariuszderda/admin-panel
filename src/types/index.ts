@@ -12,6 +12,7 @@ export type ProductType = {
   reference: string;
   price: number;
   description: string;
+  category: string;
   createdAt: string;
   updatedAt: string;
   createdBy: CreatedByType;

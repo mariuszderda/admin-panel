@@ -10,6 +10,13 @@ const EditPaymentPage = async ({
 }) => {
   const session = await getSession();
   const payment = await getDataById("payments", id);
+
+  if (!payment || payment._id === undefined)
+    return (
+      <PageCard title="Payment detail">
+        <h3>We can&apos;t load payment detail.</h3>
+      </PageCard>
+    );
   return (
     <PageCard title="Edit payment">
       <PaymentForm token={session.user.token} payment={payment} />

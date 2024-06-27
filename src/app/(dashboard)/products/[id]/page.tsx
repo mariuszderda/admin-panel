@@ -1,12 +1,17 @@
 import { PageCard } from "@/components/page-card";
 import { getData, getDataById } from "@/lib/api-call";
+import { ProductType } from "@/types";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 
 const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const res = await getDataById("products", id);
-  const product = await res.json();
+  const product: ProductType = await getDataById("products", id);
 
-  if (product.error) throw new Error("Product not found");
+  if (!product || product._id === undefined)
+    return (
+      <PageCard title="Product detail">
+        <h3>We can&apos;t load product detail.</h3>
+      </PageCard>
+    );
 
   return (
     <PageCard title="Product">

@@ -1,27 +1,20 @@
 import { ProductForm } from "@/components/forms/product-form";
 import { PageCard } from "@/components/page-card";
+import { getData, getDataById } from "@/lib/api-call";
 import { getSession } from "@/lib/auth";
+import { CategoryType, ProductType } from "@/types";
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getSession();
-  const res = await fetch(`http://localhost:3000/products/${params.id}`);
-  const product = await res.json();
-  const categories = await fetch(`http://localhost:3000/category`, {
-    mode: "no-cors",
-  })
-    .then((response) => {
-      if (!response.ok) throw response;
+  const product: ProductType = await getDataById("products", id);
+  const categories: CategoryType[] = await getData("category");
 
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      throw new Error("Failed to get a category list. Please try again later");
-    });
-
-  if (product.error) throw new Error("Product not found");
+  if (!product || product._id === undefined)
+    return (
+      <PageCard title="Product detail">
+        <h3>We can&apos;t load product detail.</h3>
+      </PageCard>
+    );
   return (
     <PageCard title="Edit">
       <ProductForm

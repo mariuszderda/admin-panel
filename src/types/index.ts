@@ -119,3 +119,23 @@ export type OrderType = {
   status: string;
   amount: number;
 };
+
+export type StatisticType = {
+  productsCount: number;
+  totalAmount: [
+    {
+      total: number;
+    },
+  ];
+  orderCount: number;
+  lastOrders: {
+    customer: {
+      first_name: string;
+      last_name: string;
+      email: string;
+    };
+    amount: number;
+    _id: string;
+  }[];
+  totalCustomers: number;
+};

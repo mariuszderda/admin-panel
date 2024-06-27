@@ -35,7 +35,6 @@ export const CategoryForm = ({ token, category }: CategoryFormProps) => {
   });
 
   const onSubmit = async (data: { name: string; description: string }) => {
-    console.log("SUBMIT");
     const url = category
       ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/${category._id}`
       : `${process.env.NEXT_PUBLIC_API_HOST}/categories`;
@@ -51,7 +50,6 @@ export const CategoryForm = ({ token, category }: CategoryFormProps) => {
           "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_API_HOST}`,
         },
       });
-      console.log(response);
 
       if (!response.ok) throw new Error("Network response was not ok");
 

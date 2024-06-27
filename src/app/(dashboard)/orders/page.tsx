@@ -23,9 +23,9 @@ const OrderPage = async () => {
   if (!orders || orders.length === 0)
     return (
       <PageCard
-        title="Payments"
-        subtitle="All payments in your store"
-        createHref="/products/create"
+        title="Orders"
+        subtitle="All orders in your store"
+        createHref="/orders/create"
       >
         <h2>List of payments method is empty</h2>
       </PageCard>

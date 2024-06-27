@@ -26,7 +26,7 @@ const PaymentsPage = async () => {
       <PageCard
         title="Payments"
         subtitle="All payments in your store"
-        createHref="/products/create"
+        createHref="/payments/create"
       >
         <h2>List of payments method is empty</h2>
       </PageCard>

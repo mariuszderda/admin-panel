@@ -1,8 +1,5 @@
 import { Avatar } from "@/components/header/avatar";
 import { Navigation } from "@/components/header/navigation";
-import { SearchBox } from "@/components/header/searchBox";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -11,7 +8,6 @@ export const Header = () => {
         <Navigation />
 
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <SearchBox />
           <Avatar />
         </div>
       </header>

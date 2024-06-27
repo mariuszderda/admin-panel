@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { CategoryType } from "@/types";
 
 const CategoryPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const category: CategoryType = await getDataById("category", id);
+  const category: CategoryType = await getDataById("categories", id);
 
   if (!category || category._id === undefined)
     return (

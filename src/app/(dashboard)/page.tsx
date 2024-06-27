@@ -5,10 +5,6 @@ import { StatisticType } from "@/types";
 
 export default async function Home() {
   const session = await getSession();
-  const statistic: StatisticType = await getDataWithToken(
-    "statistic",
-    session.user.token
-  );
 
-  return <Dashboard statistic={statistic} />;
+  return <Dashboard token={session.user.token} />;
 }

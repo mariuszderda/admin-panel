@@ -1,4 +1,4 @@
-import { getData } from "@/lib/api-call";
+import { getData, getDataWithToken } from "@/lib/api-call";
 import { StatisticType } from "@/types";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import { CreditCard, DollarSign, Users } from "lucide-react";
@@ -18,7 +18,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export async function Dashboard({ statistic }: { statistic: StatisticType }) {
+export async function Dashboard({ token }: { token: string }) {
+  const statistic: StatisticType = await getDataWithToken("statistic", token);
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">

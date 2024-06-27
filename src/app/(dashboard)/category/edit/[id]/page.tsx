@@ -12,13 +12,6 @@ const EditPaymentPage = async ({
   const session = await getSession();
   const category = await getDataById("categories", id);
 
-  if (!category || category._id === undefined)
-    return (
-      <PageCard title="Category detail">
-        <h3>We can&apos;t load category detail.</h3>
-      </PageCard>
-    );
-
   return (
     <PageCard title="Edit category">
       <CategoryForm token={session.user.token} category={category} />

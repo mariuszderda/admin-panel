@@ -9,12 +9,6 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const product: ProductType = await getDataById("products", id);
   const categories: CategoryType[] = await getData("category");
 
-  if (!product || product._id === undefined)
-    return (
-      <PageCard title="Product detail">
-        <h3>We can&apos;t load product detail.</h3>
-      </PageCard>
-    );
   return (
     <PageCard title="Edit">
       <ProductForm

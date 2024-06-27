@@ -16,13 +16,6 @@ const OrderDetailPage = async ({
     session.user.token
   );
 
-  if (!order || order._id === undefined)
-    return (
-      <PageCard title="Order detail">
-        <h3>We can&apos;t load order detail.</h3>
-      </PageCard>
-    );
-
   return (
     <PageCard title="Order details">
       <div>

@@ -2,9 +2,6 @@ import { getData } from "@/lib/api-call";
 import { StatisticType } from "@/types";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 import { CreditCard, DollarSign, Users } from "lucide-react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -21,9 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export async function Dashboard() {
-  const statistic: StatisticType = await getData("statistic");
-
+export async function Dashboard({ statistic }: { statistic: StatisticType }) {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">

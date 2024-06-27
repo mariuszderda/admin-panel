@@ -20,7 +20,15 @@ const CategoryPage = async () => {
   );
 
   if (!categories || categories.length === 0)
-    throw new Error("No deliveries found.");
+    return (
+      <PageCard
+        title="Category"
+        subtitle="Create and edit category"
+        createHref="/category/create"
+      >
+        <h3>Category list is empty.</h3>
+      </PageCard>
+    );
 
   return (
     <PageCard

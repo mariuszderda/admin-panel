@@ -1,9 +1,18 @@
 import { PageCard } from "@/components/page-card";
 import { getDataById } from "@/lib/api-call";
 import { cn } from "@/lib/utils";
+import { DeliveryType } from "@/types";
 
 const PaymentPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const delivery = await getDataById("delivery", id);
+  const delivery: DeliveryType = await getDataById("delivery", id);
+
+  if (!delivery || delivery._id === undefined)
+    return (
+      <PageCard title="Customer detail">
+        <h3>We can&apos;t load customer detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Payment detali">
       <div className="mt-6 border-t border-gray-100">

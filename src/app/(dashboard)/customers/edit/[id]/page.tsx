@@ -13,6 +13,14 @@ const EditPaymentPage = async ({
   const session = await getSession();
   const token = session.user?.token;
   const customer = await getDataByIdWithToken("customers", id, token);
+
+  if (!customer || customer._id === undefined)
+    return (
+      <PageCard title="Customer detail">
+        <h3>We can&apos;t load customer detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Edit payment">
       <CustomerForm token={session.user.token} customer={customer} />

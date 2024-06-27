@@ -11,6 +11,14 @@ const EditPaymentPage = async ({
 }) => {
   const session = await getSession();
   const delivery = await getDataById("delivery", id);
+
+  if (!delivery || delivery._id === undefined)
+    return (
+      <PageCard title="Delivery detail">
+        <h3>We can&apos;t load delivery detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Edit payment">
       <DeliveryForm token={session.user.token} delivery={delivery} />

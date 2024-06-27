@@ -5,6 +5,14 @@ import { CategoryType } from "@/types";
 
 const CategoryPage = async ({ params: { id } }: { params: { id: string } }) => {
   const category: CategoryType = await getDataById("category", id);
+
+  if (!category || category._id === undefined)
+    return (
+      <PageCard title="Category detail">
+        <h3>We can&apos;t load category detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Category detali">
       <div className="mt-6 border-t border-gray-100">

@@ -72,8 +72,8 @@ export const CustomerForm = ({ token, customer }: CustomerFormProps) => {
     };
   }) => {
     const url = customer
-      ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/${customer._id}`
-      : `${process.env.NEXT_PUBLIC_API_HOST}/categories`;
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/customers/${customer._id}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/customers`;
 
     const httpMethod = customer ? "PATCH" : "POST";
     try {

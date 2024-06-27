@@ -1,8 +1,9 @@
 import { PageCard } from "@/components/page-card";
+import { getData, getDataById } from "@/lib/api-call";
 import { priceWithSeparator } from "@/utils/priceWithSeparator";
 
-const ProductPage = async ({ params }: { params: { id: string } }) => {
-  const res = await fetch(`http://localhost:3000/products/${params.id}`);
+const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
+  const res = await getDataById("products", id);
   const product = await res.json();
 
   if (product.error) throw new Error("Product not found");

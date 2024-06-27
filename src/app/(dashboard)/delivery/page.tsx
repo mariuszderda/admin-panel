@@ -21,6 +21,17 @@ const DeliveryPage = async () => {
   const deliveries = await getData("delivery");
   const session = await getSession();
 
+  if (!deliveries || deliveries.length === 0)
+    return (
+      <PageCard
+        title="Delivery"
+        subtitle="Manage your deliveries"
+        createHref="delivery/create"
+      >
+        <h1>List of customers is empty!</h1>
+      </PageCard>
+    );
+
   return (
     <PageCard
       title="Payments"

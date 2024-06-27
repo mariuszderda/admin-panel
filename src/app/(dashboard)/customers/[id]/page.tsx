@@ -12,6 +12,14 @@ const PaymentPage = async ({ params: { id } }: { params: { id: string } }) => {
     id,
     token
   );
+
+  if (!customer || customer._id === undefined)
+    return (
+      <PageCard title="Customer detail">
+        <h3>We can&apos;t load customer detail.</h3>
+      </PageCard>
+    );
+
   return (
     <PageCard title="Customer detali">
       <div className="mt-6 border-t border-gray-100">

@@ -8,7 +8,7 @@ import { Suspense } from "react";
 const PaymentCreatePage = async () => {
   const session = await getSession();
   return (
-    <PageCard title="Create a delivery method">
+    <PageCard title="Create a new customer">
       <Suspense fallback={null}>
         <CustomerForm token={session?.user.token} />
       </Suspense>

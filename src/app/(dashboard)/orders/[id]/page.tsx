@@ -17,9 +17,12 @@ const OrderDetailPage = async ({
     session.user.token
   );
 
-  if (!order || Object.keys(order).length === 0)
-    return <DataNotFound message="Orders not found." />;
-
+  if (!order || order._id === undefined)
+    return (
+      <PageCard title="Customer detail">
+        <h3>We can&apos;t load order detail.</h3>
+      </PageCard>
+    );
   return (
     <PageCard title="Order details">
       <div>
